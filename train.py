@@ -138,7 +138,8 @@ def multi_task_trainer(train_loader, test_loader, multi_task_model, device, opti
             
             ## reconstruction-related loss            
             fusion_loss, int_loss, grad_loss = Fusion_loss(Y_vi, img_ir, fused_img, device=device)            
-            
+
+            ## mIoU-based semantic measurement weight ##
             lamd = 1 - 1 / (1 + exp(-10 * (2 * mIoU - 1)))
             
             train_loss = fusion_loss + lamd * train_seg_loss + (1 - lamd) * train_fu_seg_loss
