@@ -136,7 +136,7 @@ def multi_task_trainer(train_loader, test_loader, multi_task_model, device, opti
             fu_seg_results = torch.argmax(fu_seg_pred, dim=1, keepdim=True) ## print(seg_result.shape())
             train_fu_seg_loss = fu_seg_loss # 源weight == 10  + 10 * bi_loss + 10 * bd_loss 
             
-            ## reconstruction-related loss            
+            ## content and gradient loss            
             fusion_loss, int_loss, grad_loss = Fusion_loss(Y_vi, img_ir, fused_img, device=device)            
 
             ## mIoU-based semantic measurement weight ##
